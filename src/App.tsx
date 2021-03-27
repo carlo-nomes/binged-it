@@ -43,7 +43,10 @@ const App: FC = () => {
         </a>
       </Header>
       <Content>
-        <Search onSearch={setQuery} />
+        <Search
+          placeholder="search for your favorite shows"
+          onSearch={setQuery}
+        />
         <Spin spinning={loading}>
           <ShowOverview shows={shows} />
         </Spin>
