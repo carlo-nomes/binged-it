@@ -38,7 +38,9 @@ const App: FC = () => {
   return (
     <Layout>
       <Header>
-        <HeaderLogo />
+        <a href="/">
+          <HeaderLogo />
+        </a>
       </Header>
       <Content>
         <Search onSearch={setQuery} />
