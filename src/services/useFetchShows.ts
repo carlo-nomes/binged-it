@@ -3,11 +3,7 @@ import { Show } from "../models/Show";
 
 const BASE_URL = "http://api.tvmaze.com";
 
-// TODO: make dynamic
-const query = "grey's anatomy";
-
 const mapToShow = (item: any): Show => {
-  console.log(item);
   return {
     id: item.show.id,
     title: item.show.name,
@@ -17,10 +13,12 @@ const mapToShow = (item: any): Show => {
   };
 };
 
-const useFetchShows = () => {
+const useFetchShows = (query: string) => {
   const [shows, setShows] = useState<Show[]>([]);
 
   useEffect(() => {
+    if (!query) return;
+
     const url = `${BASE_URL}/search/shows?q=${query}`;
 
     const doFetch = async () => {
@@ -30,7 +28,7 @@ const useFetchShows = () => {
       setShows(mapped);
     };
     doFetch();
-  }, []);
+  }, [query]);
 
   return [shows];
 };
