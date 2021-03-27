@@ -4,6 +4,7 @@ import { Spin } from "antd";
 import AntSearch from "antd/lib/input/Search";
 import AntLayout, {
   Content as AntContent,
+  Footer,
   Header as AntHeader,
 } from "antd/lib/layout/layout";
 import { HeaderLogo } from "./Logo";
@@ -44,7 +45,7 @@ const App: FC = () => {
       </Header>
       <Content>
         <Search
-          placeholder="search for your favorite shows"
+          placeholder="Search for your favorite shows"
           onSearch={setQuery}
         />
         <Spin spinning={loading}>
