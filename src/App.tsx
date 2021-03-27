@@ -1,17 +1,21 @@
-import { Layout, Space } from "antd";
+import { FC, useState } from "react";
+import styled from "styled-components";
+import { Spin } from "antd";
 import AntSearch from "antd/lib/input/Search";
-import {
+import AntLayout, {
   Content as AntContent,
   Header as AntHeader,
 } from "antd/lib/layout/layout";
-import React, { FC, useState } from "react";
-import styled from "styled-components";
 import { HeaderLogo } from "./Logo";
 import useFetchShows from "./services/useFetchShows";
 import ShowOverview from "./shows/overview/ShowOverview";
 
 const Search = styled(AntSearch)`
   margin: 1rem;
+`;
+
+const Layout = styled(AntLayout)`
+  min-height: 100vh;
 `;
 
 const Header = styled(AntHeader)`
@@ -21,6 +25,7 @@ const Header = styled(AntHeader)`
 `;
 
 const Content = styled(AntContent)`
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +34,7 @@ const Content = styled(AntContent)`
 
 const App: FC = () => {
   const [query, setQuery] = useState("");
-  const [shows] = useFetchShows(query);
+  const [shows, loading] = useFetchShows(query);
   return (
     <Layout>
       <Header>
@@ -37,7 +42,9 @@ const App: FC = () => {
       </Header>
       <Content>
         <Search onSearch={setQuery} />
-        <ShowOverview shows={shows} />
+        <Spin spinning={loading}>
+          <ShowOverview shows={shows} />
+        </Spin>
       </Content>
     </Layout>
   );

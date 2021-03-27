@@ -8,29 +8,33 @@ const mapToShow = (item: any): Show => {
     id: item.show.id,
     title: item.show.name,
     description: item.show.summary,
-    image: item.show.image?.original,
+    image: item.show.image?.medium,
     episodes: 0, // TODO get seperatly
   };
 };
 
-const useFetchShows = (query: string) => {
-  const [shows, setShows] = useState<Show[]>([]);
+type Result = [data: Show[], loading: boolean];
+
+const useFetchShows = (query: string): Result => {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<Show[]>([]);
 
   useEffect(() => {
     if (!query) return;
-
+    setLoading(true);
     const url = `${BASE_URL}/search/shows?q=${query}`;
 
     const doFetch = async () => {
       const response = await fetch(url);
       const json = await response.json();
       const mapped = json.map(mapToShow);
-      setShows(mapped);
+      setData(mapped);
+      setLoading(false);
     };
     doFetch();
   }, [query]);
 
-  return [shows];
+  return [data, loading];
 };
 
 export default useFetchShows;
