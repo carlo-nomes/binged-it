@@ -3,6 +3,8 @@ import { Content, Header as AntHeader } from "antd/lib/layout/layout";
 import { FC } from "react";
 import styled from "styled-components";
 import { HeaderLogo } from "./Logo";
+import useFetchShows from "./services/useFetchShows";
+import ShowOverview from "./shows/overview/ShowOverview";
 
 const Header = styled(AntHeader)`
   height: 8rem;
@@ -11,11 +13,15 @@ const Header = styled(AntHeader)`
 `;
 
 const App: FC = () => {
+  const [shows] = useFetchShows();
   return (
     <Layout>
       <Header>
         <HeaderLogo />
       </Header>
+      <Content>
+        <ShowOverview shows={shows} />
+      </Content>
     </Layout>
   );
 };
