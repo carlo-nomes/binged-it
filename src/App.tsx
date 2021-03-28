@@ -6,9 +6,9 @@ import AntLayout, {
   Content as AntContent,
   Header as AntHeader,
 } from "antd/lib/layout/layout";
-import { HeaderLogo } from "./Logo";
+import { HeaderLogo } from "./components/Logo";
 import useFetchShows from "./services/useFetchShows";
-import ShowOverview from "./shows/overview/ShowOverview";
+import ShowOverview from "./shows/Overview";
 
 const Search = styled(AntSearch)`
   margin: 1rem;
@@ -40,6 +40,7 @@ const Content = styled(AntContent)`
 const App: FC = () => {
   const [query, setQuery] = useState("");
   const [shows, loading] = useFetchShows(query);
+
   return (
     <Layout>
       <Header>
