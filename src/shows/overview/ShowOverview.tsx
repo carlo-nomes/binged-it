@@ -2,7 +2,9 @@ import styled from "styled-components";
 import { Show } from "../../models/Show";
 import ShowItem from "./ShowItem";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  max-width: 100%;
+`;
 
 interface ShowOverviewProps {
   shows: Show[];

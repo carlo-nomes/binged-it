@@ -4,7 +4,6 @@ import { Spin } from "antd";
 import AntSearch from "antd/lib/input/Search";
 import AntLayout, {
   Content as AntContent,
-  Footer,
   Header as AntHeader,
 } from "antd/lib/layout/layout";
 import { HeaderLogo } from "./Logo";
@@ -26,11 +25,16 @@ const Header = styled(AntHeader)`
 `;
 
 const Content = styled(AntContent)`
+  width: 100%;
   min-height: 100%;
+  max-width: 60rem;
+
+  margin: 0 auto;
+  padding: 0 1rem;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 10rem;
 `;
 
 const App: FC = () => {
